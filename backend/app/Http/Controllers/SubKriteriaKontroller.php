@@ -10,7 +10,7 @@ class SubKriteriaKontroller extends Controller
     public function view(Request $request)
     {
         if($request->has('search')){
-            $_sub_kriteria      = SubKriteria::where('id', $request->search)->get();
+            $_sub_kriteria      = SubKriteria::where('id', $request->search)->first();
             return $_sub_kriteria;
         }
     }

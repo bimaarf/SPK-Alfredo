@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
-use App\Models\SubKriteria;
 use Illuminate\Http\Request;
 
 class KriteriaController extends Controller
@@ -11,8 +10,9 @@ class KriteriaController extends Controller
     public function view()
     {
         $_kriteria      = Kriteria::all();
-        $_sub_kriteria  = SubKriteria::all();
-        return array($_kriteria, $_sub_kriteria);
+        // $_sub_kriteria  = SubKriteria::all();
+        return $_kriteria;
+        // return array($_kriteria, $_sub_kriteria);
     }
     public function store(Request $request)
     {
