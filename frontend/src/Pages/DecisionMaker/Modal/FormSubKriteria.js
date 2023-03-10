@@ -40,12 +40,7 @@ export const FormSubKriteria = ({ getKriteria }) => {
       axios.post(`api/sub-kriteria/store`, { items: data }).then(
         (res) => {
           document.getElementById("form-sub-kriteria").click();
-          if (res.data.message === "Update!")
-            return toast.success("Berhasil diubah");
-          if (res.data.message === "Added!")
-            setFormList([
-              { kriteria_id: "", nama_sub_kriteria: "", nilai: "" },
-            ]);
+
           return toast.success("Berhasil ditambah");
         },
         function (err) {
@@ -62,16 +57,14 @@ export const FormSubKriteria = ({ getKriteria }) => {
           <div className="mt-2">
             <label
               htmlFor="nama_kriteria"
-              className="text-gray-600 font-semibold"
-            >
+              className="text-gray-600 font-semibold">
               Nama Kriteria
             </label>
             <select
               onChange={(e) => handleChange(e, i)}
               name="kriteria_id"
               id="nama_kriteria"
-              className=" xappearance-none rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border"
-            >
+              className=" xappearance-none rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border">
               <option value="">-- Pilih --</option>
               {getKriteria &&
                 getKriteria.map((item, index) => (
@@ -84,8 +77,7 @@ export const FormSubKriteria = ({ getKriteria }) => {
           <div className="mt-2">
             <label
               htmlFor="nama_sub_kriteria"
-              className="text-gray-600 font-semibold"
-            >
+              className="text-gray-600 font-semibold">
               Nama Sub Kriteria
             </label>
             <input
@@ -118,8 +110,7 @@ export const FormSubKriteria = ({ getKriteria }) => {
             <button
               type="button"
               onClick={() => delForm(i)}
-              className="text-sm bg-red-500 hover:bg-red-600 duration-300 ease-in-out text-start rounded-md md:w-1/4 px-10 py-2 mt-10 text-white"
-            >
+              className="text-sm bg-red-500 hover:bg-red-600 duration-300 ease-in-out text-start rounded-md md:w-1/4 px-10 py-2 mt-10 text-white">
               <i className="fa fa-trash mr-2"></i>
               Hapus
             </button>
@@ -131,16 +122,14 @@ export const FormSubKriteria = ({ getKriteria }) => {
         <button
           type="button"
           onClick={addForm}
-          className="text-sm bg-cyan-600 cursor-pointer hover:bg-cyan-700 duration-300 ease-in-out px-10 py-2 rounded-md text-white"
-        >
+          className="text-sm bg-cyan-600 cursor-pointer hover:bg-cyan-700 duration-300 ease-in-out px-10 py-2 rounded-md text-white">
           <i className="fa fa-plus mr-2"></i>
           Tambah
         </button>
         <button
           onClick={handleSubmit}
           type="button"
-          className="text-sm bg-yellow-600 cursor-pointer hover:bg-yellow-700 duration-300 ease-in-out px-10 py-2 rounded-md text-white"
-        >
+          className="text-sm bg-yellow-600 cursor-pointer hover:bg-yellow-700 duration-300 ease-in-out px-10 py-2 rounded-md text-white">
           Simpan
         </button>
       </div>

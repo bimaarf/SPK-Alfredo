@@ -28,13 +28,11 @@ export const Dashboard = () => {
       });
     });
   };
-
+  
   return (
     <>
       <Header />
-      {getKriteria && (
-        <ModalKriteria getKriteria={getKriteria} getDashboard={getDashboard} />
-      )}
+      <ModalKriteria getKriteria={getKriteria} getDashboard={getDashboard} />
       <ModalSubKriteria
         getKriteria={getKriteria}
         getSubKriteria={getSubKriteria}

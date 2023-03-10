@@ -10,7 +10,6 @@ export const FormEditKriteria = ({
   const [loadDelete, setLoadDelete] = useState(false);
   const [formInput, setFormInput] = useState({
     nama_kriteria: dataSelector.nama_kriteria,
-    kode_kriteria: dataSelector.kode_kriteria,
     bobot: dataSelector.bobot,
     tipe_kriteria: dataSelector.tipe_kriteria,
   });
@@ -41,19 +40,15 @@ export const FormEditKriteria = ({
     e.preventDefault();
     const data = {
       nama_kriteria: formInput.nama_kriteria,
-      kode_kriteria: formInput.kode_kriteria,
       bobot: formInput.bobot,
       tipe_kriteria: formInput.tipe_kriteria,
     };
     await axios.get("sanctum/csrf-cookie").then((res) => {
-      axios.post(`api/kriteria/edit/` + dataSelector.id, data).then(
+      axios.post(`api/kriteria/update/` + dataSelector.id, data).then(
         (res) => {
           getDashboard();
           document.getElementById("form-kriteria").click();
-          if (res.data.message === "Update!")
-            return toast.success("Berhasil diubah");
-          if (res.data.message === "Added!")
-            return toast.success("Berhasil ditambah");
+          return toast.success("Berhasil diubah");
         },
         function (err) {
           return toast.warning("Pastikan data terisi dengan benar!");
@@ -103,20 +98,15 @@ export const FormEditKriteria = ({
           >
             Kode Kriteria
           </label>
-          <select
-            onChange={handleChange}
-            defaultValue={formInput.kode_kriteria}
-            name="kode_kriteria"
-            id="kode_kriteria"
-            className=" xappearance-none rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border"
-          >
-            <option value="">-- Pilih --</option>
-            <option value="C1">C1</option>
-            <option value="C2">C2</option>
-            <option value="C3">C3</option>
-            <option value="C4">C4</option>
-            <option value="C5">C5</option>
-          </select>
+          <input
+            value={dataSelector.kode_kriteria}
+            id="nama_kriteria"
+            type="text"
+            name="nama_kriteria"
+            className=" xappearance-none text-orange-600 rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border"
+            placeholder="e.g. Nama Kriteria"
+            disabled
+          />
         </div>
         <div className="mt-2">
           <label htmlFor="bobot" className="text-gray-600 font-semibold">

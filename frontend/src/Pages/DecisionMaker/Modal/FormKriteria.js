@@ -5,7 +5,6 @@ export const FormKriteria = ({ getDashboard }) => {
   const [loadSubmit, setLoadSubmit] = useState(false);
   const [formInput, setFormInput] = useState({
     nama_kriteria: "",
-    kode_kriteria: "",
     bobot: "",
     tipe_kriteria: "",
   });
@@ -18,7 +17,6 @@ export const FormKriteria = ({ getDashboard }) => {
     e.preventDefault();
     const data = {
       nama_kriteria: formInput.nama_kriteria,
-      kode_kriteria: formInput.kode_kriteria,
       bobot: formInput.bobot,
       tipe_kriteria: formInput.tipe_kriteria,
     };
@@ -27,10 +25,7 @@ export const FormKriteria = ({ getDashboard }) => {
         (res) => {
           document.getElementById("form-kriteria").click();
           getDashboard();
-          if (res.data.message === "Update!")
-            return toast.success("Berhasil diubah");
-          if (res.data.message === "Added!")
-            return toast.success("Berhasil ditambah");
+          return toast.success("Berhasil ditambah");
         },
         function (err) {
           return toast.warning("Pastikan data terisi dengan benar!");
@@ -47,8 +42,7 @@ export const FormKriteria = ({ getDashboard }) => {
         <div className="mt-2">
           <label
             htmlFor="nama_kriteria"
-            className="text-gray-600 font-semibold"
-          >
+            className="text-gray-600 font-semibold">
             Nama Kriteria
           </label>
           <input
@@ -60,29 +54,6 @@ export const FormKriteria = ({ getDashboard }) => {
             placeholder="e.g. Nama Kriteria"
             required
           />
-        </div>
-        <div className="mt-2">
-          <label
-            htmlFor="kode_kriteria"
-            className="text-gray-600 font-semibold"
-          >
-            Kode Kriteria
-          </label>
-          <select
-            onChange={handleChange}
-            name="kode_kriteria"
-            id="kode_kriteria"
-            className=" xappearance-none rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border"
-          >
-            <option value="">-- Pilih --</option>
-            <option value="C1">C1</option>
-            <option value="C2">C2</option>
-            <option value="C3">C3</option>
-            <option value="C4">C4</option>
-            <option value="C5">C5</option>
-            <option value="C5">C6</option>
-            <option value="C5">C7</option>
-          </select>
         </div>
         <div className="mt-2">
           <label htmlFor="bobot" className="text-gray-600 font-semibold">
@@ -101,16 +72,14 @@ export const FormKriteria = ({ getDashboard }) => {
         <div className="mt-2">
           <label
             htmlFor="tipe_kriteria"
-            className="text-gray-600 font-semibold"
-          >
+            className="text-gray-600 font-semibold">
             Tipe Kriteria
           </label>
           <select
             onChange={handleChange}
             name="tipe_kriteria"
             id="tipe_kriteria"
-            className=" xappearance-none rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border"
-          >
+            className=" xappearance-none rounded w-full py-3 px-3 text-gray-700 focus:outline-none focus:border-yellow-500 focus:border border">
             <option value="">-- Pilih --</option>
             <option value="Benefit">Benefit</option>
             <option value="Cost">Cost</option>
@@ -119,8 +88,7 @@ export const FormKriteria = ({ getDashboard }) => {
         <div className="modal-action">
           <label
             htmlFor="form-kriteria"
-            className="text-sm bg-gray-500 cursor-pointer hover:bg-gray-600 duration-300 ease-in-out px-10 py-2 rounded-md text-white"
-          >
+            className="text-sm bg-gray-500 cursor-pointer hover:bg-gray-600 duration-300 ease-in-out px-10 py-2 rounded-md text-white">
             Tutup
           </label>
           <button
@@ -128,16 +96,14 @@ export const FormKriteria = ({ getDashboard }) => {
             type="submit"
             onClick={handleSubmit}
             htmlFor="form-kriteria"
-            className="text-sm bg-yellow-600 hover:bg-yellow-700 duration-300 ease-in-out px-10 py-2 rounded-md text-white"
-          >
+            className="text-sm bg-yellow-600 hover:bg-yellow-700 duration-300 ease-in-out px-10 py-2 rounded-md text-white">
             {loadSubmit && (
               <svg
                 role="status"
                 className="inline w-3 h-3 mr-1 text-white animate-spin mb-0.5"
                 viewBox="0 0 100 101"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                   fill="#E5E7EB"

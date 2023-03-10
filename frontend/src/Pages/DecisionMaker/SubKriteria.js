@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../../Components/Header";
 import { SidebarDecisionMaker } from "../../Components/SidebarDecisionMaker";
 import { FormEditSubKriteria } from "./Modal/FormEditSubKriteria";
+import { ModalDeleteSubKriteria } from "./Modal/ModalDeleteSubKriteria";
 
 export const SubKriteria = () => {
   useEffect(() => {
@@ -28,49 +29,55 @@ export const SubKriteria = () => {
             {getKriteria &&
               getKriteria.map((item, key) => (
                 <div key={key}>
-                  <h1 className="font-semibold md:text-xl text-gray-800 mt-4">
+                  <h1 className="font-semibold md:text-md text-gray-800 my-4">
                     {item.kode_kriteria} ({item.nama_kriteria})
                   </h1>
-                  <div className="overflow-x-auto w-full">
-                    <table className="table w-full mt-4 text-start">
-                      {/* head */}
-                      <thead>
-                        <tr>
-                          <th className="text-start">No.</th>
-                          <th className="text-start">Nama Sub Kriteria</th>
-                          <th className="text-start">Nilai</th>
-                          <th className="text-start">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-start">
-                        {getSubKriteria &&
-                          getSubKriteria.map(
-                            (subKriteria, index) =>
-                              subKriteria.kriteria_id === item.id && (
-                                <>
-                                  <FormEditSubKriteria
-                                    getData={getData}
-                                    subKriteria={subKriteria}
-                                  />
-                                  <tr key={index}>
-                                    <td>1.</td>
-                                    <td className="w-96">{subKriteria.nama_sub_kriteria}</td>
-                                    <td>{subKriteria.nilai}</td>
-                                    <td>
-                                      <div className="flex justify-start items-center gap-2">
-                                        <label
-                                          htmlFor={`form-edit-subkriteria${subKriteria.id}`}
-                                          className="fa fa-pencil cursor-pointer py-1.5 px-2 bg-opacity-90 text-white rounded-md bg-sky-500 hover:bg-sky-600  text-sm duration-300 ease-in-out"
-                                        ></label>
-                                        <button className="fa fa-trash py-1.5 px-2 bg-opacity-90 text-white rounded-md bg-red-600 hover:bg-red-700 text-sm duration-300 ease-in-out"></button>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </>
-                              )
-                          )}
-                      </tbody>
-                    </table>
+                  <div className="overflow-x-auto w-full md:text-md text-sm">
+                    <div>
+                      <div className="border flex border-gray-200 p-3 gap-2">
+                        <div className="text-start  border-r w-1/6">No.</div>
+                        <div className="text-start border-r w-3/6">
+                          Nama Sub Kriteria
+                        </div>
+                        <div className="text-start border-r w-1/6">Nilai</div>
+                        <div className="text-start w-1/6">Aksi</div>
+                      </div>
+                    </div>
+                    {getSubKriteria &&
+                      getSubKriteria.map(
+                        (subKriteria, index) =>
+                          subKriteria.kriteria_id === item.id && (
+                            <div className="border flex border-gray-200 p-3 gap-2">
+                              <div className="text-start  border-r w-1/6">
+                                1
+                              </div>
+                              <div className="w-text-start  border-r w-3/6">
+                                {subKriteria.nama_sub_kriteria}
+                              </div>
+                              <div className="text-start  border-r w-1/6">
+                                {subKriteria.nilai}
+                              </div>
+                              <div className="w-1/6">
+                                <div className="flex justify-end items-center gap-2">
+                                  <label
+                                    htmlFor={`form-edit-subkriteria${subKriteria.id}`}
+                                    className="fa fa-pencil cursor-pointer md:py-1.5 md:px-2 py-1 px-1 text-xs  md:text-smbg-opacity-90 text-white rounded-md bg-sky-500 hover:bg-sky-600 duration-300 ease-in-out"></label>
+                                  <label
+                                    htmlFor={`form-delete-subkriteria${subKriteria.id}`}
+                                    className="fa fa-trash md:py-1.5 md:px-2 py-1 px-1 text-xs md:text-sm bg-opacity-90 text-white rounded-md bg-red-600 hover:bg-red-700 duration-300 ease-in-out cursor-pointer"></label>
+                                </div>
+                              </div>
+                              <FormEditSubKriteria
+                                getData={getData}
+                                subKriteria={subKriteria}
+                              />
+                              <ModalDeleteSubKriteria
+                                getData={getData}
+                                subKriteria={subKriteria}
+                              />
+                            </div>
+                          )
+                      )}
                   </div>
                 </div>
               ))}

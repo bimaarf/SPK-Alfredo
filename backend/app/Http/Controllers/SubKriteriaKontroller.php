@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SubKriteriaKontroller extends Controller
 {
+    public function view(Request $request)
+    {
+        if($request->has('search')){
+            $_sub_kriteria      = SubKriteria::where('id', $request->search)->get();
+            return $_sub_kriteria;
+        }
+    }
     public function store(Request $request)
     {
         $items = $request->input('items');
@@ -31,6 +38,15 @@ class SubKriteriaKontroller extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Updated!',
+        ]);
+    }
+    public function delete(Request $request, $id)
+    {
+        $_sub = SubKriteria::find($id);
+        $_sub->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Deleted!',
         ]);
     }
 }

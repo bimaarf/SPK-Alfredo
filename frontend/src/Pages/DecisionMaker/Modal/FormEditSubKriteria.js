@@ -48,8 +48,7 @@ export const FormEditSubKriteria = ({ getData, subKriteria }) => {
                 .getElementById(`form-edit-subkriteria${subKriteria.id}`)
                 .click()
             }
-            className="text-lg btn-sm absolute right-6 btn-circle bg-gray-400 cursor-pointer hover:rotate-180 hover:bg-gray-500 duration-300 ease-in-out text-white"
-          >
+            className="text-lg btn-sm absolute right-6 btn-circle bg-gray-400 cursor-pointer hover:rotate-180 hover:bg-gray-500 duration-300 ease-in-out text-white">
             ✕
           </button>
           <h3 className="text-lg font-bold">{subKriteria.nama_sub_kriteria}</h3>
@@ -78,8 +77,7 @@ export const FormEditSubKriteria = ({ getData, subKriteria }) => {
               <button
                 onClick={handleSubmit}
                 type="submit"
-                className="md:mt-0 text-sm duration-300 ease-in-out px-10 py-2 rounded-md text-white bg-orange-500 hover:bg-orange-600"
-              >
+                className="md:mt-0 text-sm duration-300 ease-in-out px-10 py-2 rounded-md text-white bg-orange-500 hover:bg-orange-600">
                 Sunting
               </button>
             </div>

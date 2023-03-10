@@ -26,7 +26,7 @@ function App() {
   const [authCheck, setAuthCheck] = useState(false);
   const [getCookie, setCookie] = reactUseCookie();
   useEffect(() => {
-    if (getCookie.auth_token) return setAuthCheck(true);
+    if (localStorage.getItem('auth_token')) return setAuthCheck(true);
     setAuthCheck(false);
   }, []);
   return (
