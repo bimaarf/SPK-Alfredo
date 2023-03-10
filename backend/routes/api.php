@@ -26,7 +26,7 @@ Route::get('/data-dashboard/view', [KriteriaController::class, 'view']);
 Route::post('/kriteria/store', [KriteriaController::class, 'store']);
 Route::post('/kriteria/update/{id}', [KriteriaController::class, 'update']);
 Route::post('/kriteria/delete/{id}', [KriteriaController::class, 'delete']);
-Route::get('/sub-kriteria/view', [SubKriteriaKontroller::class, 'view']);
+Route::post('/sub-kriteria/view', [SubKriteriaKontroller::class, 'view']);
 Route::post('/sub-kriteria/store', [SubKriteriaKontroller::class, 'store']);
 Route::post('/sub-kriteria/update/{id}', [SubKriteriaKontroller::class, 'update']);
 Route::post('/sub-kriteria/delete/{id}', [SubKriteriaKontroller::class, 'delete']);

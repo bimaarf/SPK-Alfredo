@@ -9,7 +9,6 @@ class Kriteria extends Model
 {
     use HasFactory;
     protected $table = "tb_kriteria";
-    protected $fillable = ['nama_kriteria', 'kode_kriteria', 'bobot', 'tipe_kriteria'];
     public function kriteria()
     {
         return $this->hasMany(SubKriteria::class);
