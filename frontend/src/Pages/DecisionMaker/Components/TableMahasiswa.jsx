@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 export const TableMahasiswa = ({
   getKriteria,
   getSubKriteria,
   getMahasiswa,
   getMhsKriteria,
 }) => {
+  const [subValue, setSubValue] = useState({
+    mhs_id: "",
+    nama_sub_kriteria: "",
+  });
+  const handleOption = (e) => {
+    setSubValue({ ...subValue, [e.target.name]: e.target.value });
+  };
   return (
     <>
+      <h1>value sub kriteria = {subValue.nama_sub_kriteria}</h1>
+      <h1>value MHS ID = {subValue.mhs_id}</h1>
       <table className="table table-auto">
         <thead>
           <tr>
@@ -30,9 +39,28 @@ export const TableMahasiswa = ({
                     (mhsKriteria, indexKriteria) =>
                       mhsKriteria.mhs_id === item.id && (
                         <td key={indexKriteria}>
+                          <input
+                            id={`mhs_id${item.id}`}
+                            type="text"
+                            value={item.id}
+                            name="mhs_id"
+                            className="hidden"
+                            onClick={handleOption}
+                          />
+
+                          <label
+                            className="hidden "
+                            htmlFor={`mhs_id${item.id}`}></label>
+
                           <select
                             name="nama_sub_kriteria"
                             defaultValue={mhsKriteria.nama_sub_kriteria}
+                            onChange={handleOption}
+                            onClick={() => {
+                              document
+                                .getElementById(`mhs_id${item.id}`)
+                                .click();
+                            }}
                             className="w-full px-1 py-3 border rounded-sm outline-none">
                             <option value="-">-- Pilih ---</option>
                             {getSubKriteria &&
@@ -40,11 +68,13 @@ export const TableMahasiswa = ({
                                 (subKriteria, indexSub) =>
                                   subKriteria.kriteria_id ===
                                     mhsKriteria.kriteria_id && (
-                                    <option
-                                      value={subKriteria.nama_sub_kriteria}
-                                      key={indexSub}>
-                                      {subKriteria.nama_sub_kriteria}
-                                    </option>
+                                    <>
+                                      <option
+                                        value={subKriteria.nama_sub_kriteria}
+                                        key={indexSub}>
+                                        {subKriteria.nama_sub_kriteria}
+                                      </option>
+                                    </>
                                   )
                               )}
                           </select>
