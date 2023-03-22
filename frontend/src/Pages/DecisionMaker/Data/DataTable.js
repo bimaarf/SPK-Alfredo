@@ -1,12 +1,14 @@
-import React, { useMemo } from "react";
+import axios from "axios";
+import React, { useEffect, useMemo, useState } from "react";
 
 import DataTable from "react-data-table-component";
 import FilterComponent from "./FilterComponent";
 
 const Table = (props) => {
+  
   const columns = [
     {
-      name: "Name",
+      name: "Nama Mahasiswa",
       selector: "name",
       sortable: true,
       grow: 2,
@@ -42,8 +44,7 @@ const Table = (props) => {
           <>
             <button
               onClick={() => props.click(row.name)}
-              style={{ marginRight: "5px" }}
-            >
+              style={{ marginRight: "5px" }}>
               Edit
             </button>
             <button onClick={() => props.click(row.name)}>Delete</button>
