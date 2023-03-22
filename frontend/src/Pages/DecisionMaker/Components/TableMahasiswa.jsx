@@ -39,7 +39,7 @@ export const TableMahasiswa = ({
                               getSubKriteria.map(
                                 (subKriteria, indexSub) =>
                                   subKriteria.kriteria_id ===
-                                    mhsKriteria.id && (
+                                    mhsKriteria.kriteria_id && (
                                     <option
                                       value={subKriteria.nama_sub_kriteria}
                                       key={indexSub}>
