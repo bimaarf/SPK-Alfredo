@@ -35,7 +35,6 @@ export const SubKriteria = () => {
                   <div className="overflow-x-auto w-full md:text-md text-sm">
                     <div>
                       <div className="border flex border-gray-200 p-3 gap-2">
-                        <div className="text-start  border-r w-1/6">No.</div>
                         <div className="text-start border-r w-3/6">
                           Nama Sub Kriteria
                         </div>
@@ -47,10 +46,7 @@ export const SubKriteria = () => {
                       getSubKriteria.map(
                         (subKriteria, index) =>
                           subKriteria.kriteria_id === item.id && (
-                            <div className="border flex border-gray-200 p-3 gap-2">
-                              <div className="text-start  border-r w-1/6">
-                                1
-                              </div>
+                            <div key={index} className="border flex border-gray-200 p-3 gap-2">
                               <div className="w-text-start  border-r w-3/6">
                                 {subKriteria.nama_sub_kriteria}
                               </div>

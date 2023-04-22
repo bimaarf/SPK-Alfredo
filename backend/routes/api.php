@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\MhsController;
+use App\Http\Controllers\SPKController;
 use App\Http\Controllers\SubKriteriaKontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,4 +37,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/mahasiswa/view', [MhsController::class, 'view']);
     Route::post('/mahasiswa/store', [MhsController::class, 'store']);
     Route::get('/data-dashboard/view', [KriteriaController::class, 'view']);
+    // update kriteria mahasiswa
+    Route::post('/mahasiswa/kriteria/update', [SPKController::class, 'update']);
+
 });

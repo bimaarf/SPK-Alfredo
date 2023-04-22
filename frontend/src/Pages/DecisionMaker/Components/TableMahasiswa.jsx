@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 export const TableMahasiswa = ({
   getKriteria,
   getSubKriteria,
@@ -10,11 +12,26 @@ export const TableMahasiswa = ({
     nama_sub_kriteria: "",
   });
   const handleOption = (e) => {
+    e.persist();
     setSubValue({ ...subValue, [e.target.name]: e.target.value });
+    handleUpdate();
+  };
+  const handleUpdate = async() => {
+    console.log(subValue);
+    const data = {
+      mhs_id: subValue.mhs_id,
+      nama_sub_kriteria: subValue.nama_sub_kriteria,
+    };
+    await axios.get("sanctum/csrf-cookie").then(() => {
+      axios.post("api/mahasiswa/kriteria/update", data).then((res) => {
+        if (res.data.status === 200) return toast.success("berhasil diubah");
+      });
+    });
   };
   return (
     <>
       <h1>value sub kriteria = {subValue.nama_sub_kriteria}</h1>
+      <h1>value kriteria = {subValue.nama_sub_kriteria}</h1>
       <h1>value MHS ID = {subValue.mhs_id}</h1>
       <table className="table table-auto">
         <thead>
@@ -49,7 +66,7 @@ export const TableMahasiswa = ({
                           />
 
                           <label
-                            className="hidden "
+                            className="hidden"
                             htmlFor={`mhs_id${item.id}`}></label>
 
                           <select
