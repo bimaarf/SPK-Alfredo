@@ -11,6 +11,7 @@ import { Home } from "./Pages/Home";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SubKriteria } from "./Pages/DecisionMaker/SubKriteria";
+import { SPK } from "./Pages/DecisionMaker/SPK";
 axios.defaults.baseURL = process.env.REACT_APP_API;
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
@@ -46,6 +47,7 @@ function App() {
             element={<SubKriteria />}
           />
           <Route path="/decision-maker/mahasiswa" element={<Mahasiswa />} />
+          <Route path="/decision-maker/spk" element={<SPK />} />
           <Route path="/decision-maker/mahasiswa/form" element={<Form />} />
         </Routes>
       </Router>

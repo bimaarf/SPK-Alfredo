@@ -16,23 +16,15 @@ export const TableMahasiswa = ({
     setSubValue({ ...subValue, [e.target.name]: e.target.value });
     handleUpdate();
   };
-  const handleUpdate = async() => {
-    console.log(subValue);
-    const data = {
-      mhs_id: subValue.mhs_id,
-      nama_sub_kriteria: subValue.nama_sub_kriteria,
-    };
+  const handleUpdate = async () => {
     await axios.get("sanctum/csrf-cookie").then(() => {
-      axios.post("api/mahasiswa/kriteria/update", data).then((res) => {
+      axios.post("api/mahasiswa/kriteria/update", subValue).then((res) => {
         if (res.data.status === 200) return toast.success("berhasil diubah");
       });
     });
   };
   return (
     <>
-      <h1>value sub kriteria = {subValue.nama_sub_kriteria}</h1>
-      <h1>value kriteria = {subValue.nama_sub_kriteria}</h1>
-      <h1>value MHS ID = {subValue.mhs_id}</h1>
       <table className="table table-auto">
         <thead>
           <tr>
@@ -42,13 +34,12 @@ export const TableMahasiswa = ({
               getKriteria.map((item, key) => (
                 <th key={key}>{item.nama_kriteria}</th>
               ))}
-            <th>Action</th>
           </tr>
         </thead>
-        <tbody className="text-sm">
-          {getMahasiswa &&
-            getMahasiswa.map((item, indexMhs) => (
-              <tr key={indexMhs}>
+        {getMahasiswa &&
+          getMahasiswa.map((item, indexMhs) => (
+            <tbody key={indexMhs} className="text-sm">
+              <tr>
                 <td>{indexMhs + 1}</td>
                 <td>{item.nama}</td>
                 {getMhsKriteria &&
@@ -68,12 +59,13 @@ export const TableMahasiswa = ({
                           <label
                             className="hidden"
                             htmlFor={`mhs_id${item.id}`}></label>
-
                           <select
                             name="nama_sub_kriteria"
                             defaultValue={mhsKriteria.nama_sub_kriteria}
                             onChange={handleOption}
-                            onClick={() => {
+                            onClick={handleOption}
+                            onFocus={(e) => {
+                              e.persist();
                               document
                                 .getElementById(`mhs_id${item.id}`)
                                 .click();
@@ -85,27 +77,20 @@ export const TableMahasiswa = ({
                                 (subKriteria, indexSub) =>
                                   subKriteria.kriteria_id ===
                                     mhsKriteria.kriteria_id && (
-                                    <>
-                                      <option
-                                        value={subKriteria.nama_sub_kriteria}
-                                        key={indexSub}>
-                                        {subKriteria.nama_sub_kriteria}
-                                      </option>
-                                    </>
+                                    <option
+                                      value={subKriteria.nama_sub_kriteria}
+                                      key={indexSub}>
+                                      {subKriteria.nama_sub_kriteria}
+                                    </option>
                                   )
                               )}
                           </select>
                         </td>
                       )
                   )}
-                <td>
-                  <button className="px-4 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded">
-                    <i className="fa fa-pencil"></i>
-                  </button>
-                </td>
               </tr>
-            ))}
-        </tbody>
+            </tbody>
+          ))}
       </table>
     </>
   );

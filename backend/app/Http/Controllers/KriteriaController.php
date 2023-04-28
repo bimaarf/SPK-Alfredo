@@ -24,7 +24,7 @@ class KriteriaController extends Controller
         $_countKriteria = count($_getKriteria) + 1;
         $_kriteria = new Kriteria();
         $_kriteria->nama_kriteria = $request->nama_kriteria;
-        $_kriteria->kode_kriteria = 'C' . $_countKriteria;
+        $_kriteria->kode_kriteria = 'K' . $_countKriteria;
         $_kriteria->bobot = $request->bobot;
         $_kriteria->tipe_kriteria = $request->tipe_kriteria;
         $_kriteria->save();

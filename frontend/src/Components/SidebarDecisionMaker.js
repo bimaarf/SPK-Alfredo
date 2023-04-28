@@ -19,8 +19,7 @@ export const SidebarDecisionMaker = () => {
               location.pathname === "/decision-maker/dashboard"
                 ? "bg-yellow-500 text-white"
                 : "hover:bg-yellow-500 text-gray-700 hover:text-white"
-            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}
-          >
+            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}>
             <i className="fa fa-user"></i>
             <h1 className="font-normal">Dashboard</h1>
           </div>
@@ -30,8 +29,7 @@ export const SidebarDecisionMaker = () => {
               location.pathname === "/decision-maker/sub-kriteria"
                 ? "bg-yellow-500 text-white"
                 : "hover:bg-yellow-500 text-gray-700 hover:text-white"
-            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}
-          >
+            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}>
             <i className="fa fa-file-text"></i>
             <h1 className="font-normal">Sub Kriteria</h1>
           </div>
@@ -41,12 +39,17 @@ export const SidebarDecisionMaker = () => {
               location.pathname.split("/")[2] === "mahasiswa"
                 ? "bg-yellow-500 text-white"
                 : "hover:bg-yellow-500 text-gray-700 hover:text-white"
-            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}
-          >
+            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}>
             <i className="fa fa-users -ml-1"></i>
             <h1 className="font-normal ">Mahasiswa</h1>
           </div>
-          <div className="flex gap-3 p-3 cursor-pointer text-xl hover:bg-yellow-500 text-gray-700 hover:text-white duration-200 ease-in-out rounded-xl mt-4 justify-start items-center">
+          <div
+            onClick={() => navRedirect("/decision-maker/spk")}
+            className={`${
+              location.pathname.split("/")[2] === "spk"
+                ? "bg-yellow-500 text-white"
+                : "hover:bg-yellow-500 text-gray-700 hover:text-white"
+            } flex gap-3 p-3 cursor-pointer text-xl  duration-200 ease-in-out rounded-xl mt-4 justify-start items-center`}>
             <i className="fa fa-paste -ml-1"></i>
             <h1 className="font-normal">SPK</h1>
           </div>

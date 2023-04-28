@@ -39,5 +39,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/data-dashboard/view', [KriteriaController::class, 'view']);
     // update kriteria mahasiswa
     Route::post('/mahasiswa/kriteria/update', [SPKController::class, 'update']);
-
+    // SPK show
 });
+Route::get('/mahasiswa/spk/matriks-keputusan', [SPKController::class, 'matriksKeputusan']);
